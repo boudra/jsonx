@@ -47,7 +47,7 @@ grow_stack(State *st){
   size_t new_size = st->buf_size - st->offset + new_offset;
   unsigned char *new_buf = enif_alloc(new_size);
   unsigned char *new_cur = (new_buf + new_size) - ((st->buf + st->buf_size) - st->cur);
-  ERL_NIF_TERM *new_down = (ERL_NIF_TERM*)new_buf; 
+  ERL_NIF_TERM *new_down = (ERL_NIF_TERM*)new_buf;
   ERL_NIF_TERM *new_top = new_down + (st->stack_top - st->stack_down);
   memcpy(new_cur, st->cur, (st->buf + st->buf_size) - st->cur);
   memcpy(new_down, st->stack_down, (void*)st->stack_top - (void*)st->stack_down);
@@ -222,7 +222,7 @@ parse_object_to_map(State* st){
     return (ERL_NIF_TERM)0;
   }
  ret:
-    return enif_make_tuple2(st->env, st->priv->am_map, *plist);
+    return *plist;
   assert(0);
 }
 #endif
@@ -445,7 +445,7 @@ parse_json(State *st){
   ERL_NIF_TERM num;
   switch(look_ah(st)){
   case '\"' : return parse_string(st);
-  case '{'  : 
+  case '{'  :
   			  if (st->resource) {
   			  	  return parse_object_to_record(st);
 			  }
@@ -460,7 +460,7 @@ parse_json(State *st){
   case '['  : return parse_array(st);
   case 't'  : return parse_true(st);
   case 'f'  : return parse_false(st);
-  case 'n'  : return parse_null(st); 
+  case 'n'  : return parse_null(st);
   default:
     if((num = parse_number(st))){
       return num;

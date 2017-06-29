@@ -141,15 +141,14 @@ Examples decoding JSON
  {<<"age">>,33},
  {<<"phones">>,[3332211,4443322]}]
 
-4> jsonx:decode(<<"{\"name\":\"Ivan\",\"age\":33,\"phones\":[3332211,4443322]}">>, [{format, struct}]). 
+4> jsonx:decode(<<"{\"name\":\"Ivan\",\"age\":33,\"phones\":[3332211,4443322]}">>, [{format, struct}]).
 {struct,[{<<"name">>,<<"Ivan">>},
          {<<"age">>,33},
          {<<"phones">>,[3332211,4443322]}]}
 
 5> jsonx:decode(<<"{\"name\":\"Ivan\",\"age\":33,\"phones\":[3332211,4443322]}">>, [{format, map}]).
-{map,#{<<"age">> => 33,
-       <<"name">> => <<"Ivan">>,
-       <<"phones">> => [3332211,4443322]}}
+#{<<"age">> => 33,<<"name">> => <<"Ivan">>,
+  <<"phones">> => [3332211,4443322]}
 ```
 
 Example streaming parse
@@ -201,7 +200,7 @@ Mapping (JSON -> Erlang)
     {"this": "json"} :-> {[{<<"this">>: <<"json">>}]}         %% default eep18
     {"this": "json"} :-> [{<<"this">>: <<"json">>}]           %% optional proplist
     {"this": "json"} :-> {struct, [{<<"this">>: <<"json">>}]} %% optional struct
-    {"this": "json"} :-> {map, #{<<"this">> => <<"json">>}}   %% optional map
+    {"this": "json"} :-> #{<<"this">> => <<"json">>}          %% optional map
     JSONObject       :-> #rec{...}                            %% decoder must be predefined
 
 Mapping (Erlang -> JSON)
@@ -214,7 +213,7 @@ Mapping (Erlang -> JSON)
     <<"str">>                            :-> "str"
     [1, 2.99]                            :-> [1, 2.99]
     {struct, [{<<"this">>: <<"json">>}]} :-> {"this": "json"}
-    {map, #{this => <<"json">>}}         :-> {"this": "json"}
+    #{this => <<"json">>}                :-> {"this": "json"}
     [{<<"this">>: <<"json">>}]           :-> {"this": "json"}
     {[{<<"this">>: <<"json">>}]}         :-> {"this": "json"}
     {json, IOList}                       :-> `iolist_to_binary(IOList)`  %% include with no validation
