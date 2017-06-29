@@ -4,3 +4,6 @@
 *.beam
 ebin/*.app
 *~
+.rebar
+c_src/*.d
+erl_crash.dump
