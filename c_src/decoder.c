@@ -434,7 +434,7 @@ static inline ERL_NIF_TERM
 parse_null(State* st){
   if(!(strncmp("ull", (char*)(++st->cur), 3))){
     st->cur = st->cur + 3;
-    return st->priv->am_null;
+    return st->priv->am_nil;
   }
   st->error = st->priv->am_esyntax;
   return (ERL_NIF_TERM)0;

@@ -13,7 +13,7 @@
 typedef struct{
   ERL_NIF_TERM am_true;
   ERL_NIF_TERM am_false;
-  ERL_NIF_TERM am_null;
+  ERL_NIF_TERM am_nil;
 
   ERL_NIF_TERM am_error;
   ERL_NIF_TERM am_erange;
@@ -37,7 +37,7 @@ ERL_NIF_TERM decode_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]);
 ERL_NIF_TERM encode_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]);
 
 /*
-    Records descriptor for encode 
+    Records descriptor for encode
 
     +---------------------------------------+ <- 0
     | sizeof(EncEntry)                      |
@@ -64,7 +64,7 @@ ERL_NIF_TERM encode_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]);
 
 typedef struct{
   unsigned offset; // set off in binary storage
-  unsigned size; 
+  unsigned size;
 }EncField;
 
 typedef struct{
@@ -104,7 +104,7 @@ return sizeof(EncEntry) + sizeof(EncRecord)*rec_cnt + sizeof(EncField)*field_cnt
 %%   , Keys         %% [KeyNum]
 %%   , Records3     %% [{Tag, Off, Len}]
 %% };
-%% 
+%%
  */
 
 #define BITS_PER_WORD       (sizeof(long) * 8)

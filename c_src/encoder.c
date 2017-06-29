@@ -66,7 +66,7 @@ match_atom(ErlNifEnv* env, ERL_NIF_TERM term, State *st){
   }else if(enif_is_identical(term, st->priv->am_false)){
     b_puts(5, "false", st);
     return 1;
-  }else if(enif_is_identical(term, st->priv->am_null)){
+  }else if(enif_is_identical(term, st->priv->am_nil)){
     b_puts(4, "null", st);
     return 1;
   }

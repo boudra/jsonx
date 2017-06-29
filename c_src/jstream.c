@@ -12,7 +12,7 @@ typedef struct{
   ERL_NIF_TERM am_false;
   ERL_NIF_TERM am_ok;
 
-  ERL_NIF_TERM am_null;
+  ERL_NIF_TERM am_nil;
   ERL_NIF_TERM am_start_map;
   ERL_NIF_TERM am_map_key;
   ERL_NIF_TERM am_end_map;
@@ -68,7 +68,7 @@ load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info){
   if(!enif_make_existing_atom(env, "false",    	  &(pdata->am_false),       ERL_NIF_LATIN1)) return 1;
   if(!enif_make_existing_atom(env, "ok",    	  &(pdata->am_ok),       ERL_NIF_LATIN1)) return 1;
 
-  if(!enif_make_existing_atom(env, "null",     	  &(pdata->am_null),        ERL_NIF_LATIN1)) return 1;
+  if(!enif_make_existing_atom(env, "null",     	  &(pdata->am_nil),        ERL_NIF_LATIN1)) return 1;
   if(!enif_make_existing_atom(env, "start_map",   &(pdata->am_start_map),   ERL_NIF_LATIN1)) return 1;
   if(!enif_make_existing_atom(env, "map_key",     &(pdata->am_map_key),     ERL_NIF_LATIN1)) return 1;
   if(!enif_make_existing_atom(env, "end_map",     &(pdata->am_end_map),     ERL_NIF_LATIN1)) return 1;
@@ -192,7 +192,7 @@ static inline ERL_NIF_TERM
 parse_null(State* st){
   if(!(strncmp("ull", (char*)(++st->cur), 3))){
     st->cur = st->cur + 3;
-    return st->priv->am_null;
+    return st->priv->am_nil;
   }
   return make_error(st, st->priv->am_esyntax);
 }

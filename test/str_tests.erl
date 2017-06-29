@@ -4,8 +4,8 @@
 %% Test encode atom
 enca0_test() -> <<"\"\"">> = jsonx:encode('').
 enca1_test() -> <<"\"atom\"">> = jsonx:encode(atom).
-enca2_test() -> <<"[true,null,false,\"atom\"]">> = jsonx:encode([true, null, false, atom]).
-enca3_test() -> <<"{\"null\":null,\"atom\":\"atom\"}">> = jsonx:encode([{null,null},{atom,atom}]).
+enca2_test() -> <<"[true,null,false,\"atom\"]">> = jsonx:encode([true, nil, false, atom]).
+enca3_test() -> <<"{\"nil\":null,\"atom\":\"atom\"}">> = jsonx:encode([{nil,nil},{atom,atom}]).
 
 %% Test encode binary
 encb0_test() -> <<"\"\"">> = jsonx:encode('').
@@ -40,7 +40,7 @@ dectrue_test() ->
 decfalse_test() ->
     false = jsonx:decode(<<"false">>).
 decnull_test() ->
-    null = jsonx:decode(<<"null">>).
+    nil = jsonx:decode(<<"null">>).
 
 %% Test decode string
 decstr0_test() ->

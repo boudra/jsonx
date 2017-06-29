@@ -102,7 +102,7 @@ Examples encoding JSON
 ----------------------
 
 ```erlang
-1>  jsonx:encode([1, 2.3, true, false, null, atom, <<"string">>, []]).
+1>  jsonx:encode([1, 2.3, true, false, nil, atom, <<"string">>, []]).
 <<"[1,2.3,true,false,null,\"atom\",\"string\",[]]">>
 
 %% Object as proplist
@@ -192,7 +192,7 @@ end_map
 Mapping (JSON -> Erlang)
 ----------------------
 
-    null             :-> null
+    null             :-> nil
     true             :-> true
     false            :-> false
     "string"         :-> <<"binary">>
@@ -206,7 +206,7 @@ Mapping (JSON -> Erlang)
 Mapping (Erlang -> JSON)
 -----------------------
 
-    null                                 :-> null
+    nil                                  :-> null
     true                                 :-> true
     false                                :-> false
     atom                                 :-> "atom"

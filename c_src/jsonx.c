@@ -35,7 +35,7 @@ load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info){
 
   if(!enif_make_existing_atom(env, "true",     &(pdata->am_true),     ERL_NIF_LATIN1)) return 1;
   if(!enif_make_existing_atom(env, "false",    &(pdata->am_false),    ERL_NIF_LATIN1)) return 1;
-  if(!enif_make_existing_atom(env, "null",     &(pdata->am_null),     ERL_NIF_LATIN1)) return 1;
+  if(!enif_make_existing_atom(env, "nil" ,     &(pdata->am_nil),      ERL_NIF_LATIN1)) return 1;
 
   if(!enif_make_existing_atom(env, "error",             &(pdata->am_error),   	      ERL_NIF_LATIN1)) return 1;
   if(!enif_make_existing_atom(env, "big_num",           &(pdata->am_erange),  	      ERL_NIF_LATIN1)) return 1;
@@ -184,7 +184,7 @@ make_decoder_resource_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]){
       goto error;
     list = tail;
   }
- 
+
   DecRecord* records = records_base(dec_entry, ukeys_cnt, keys_cnt);
   long  *bit_mask = bit_mask_base(dec_entry, ukeys_cnt, keys_cnt, records_cnt);
   size_t bit_mask_len = BITS_TO_WORDS(dec_entry->ukeys_cnt);
@@ -231,4 +231,3 @@ nif_funcs[] = {
 };
 
 ERL_NIF_INIT(jsonx, nif_funcs, load, reload, upgrade, unload);
-
