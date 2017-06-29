@@ -11,6 +11,16 @@ Check out a benchmark [si14/erl_json_test](https://github.com/si14/erl_json_test
 [davisp/erljson_bench](https://github.com/davisp/erljson_bench) and
 record encoding tests in `/test/bench_encode_records.erl`
 
+Some quick benchmark against jiffy (the fastest lib I knew so far):
+```
+decoding with jiffy 2241 ms
+decoding with jsonx 1146 ms
+encoding with jiffy 1735 ms
+encoding with jsonx 519 ms
+```
+
+This was tested with 10 000 json files of varying lenghts and a total size of 41MB.
+
 INSTALLATION and DOCUMENTATION
 ------------------------------
 
